@@ -1,9 +1,12 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+
+//added the binaryTargets rhel so that it works with AWS Amplify 
+//native is for Windows OS 
 generator client {
   provider = "prisma-client-js"
-    binaryTargets = ["native", "rhel-openssl-1.0.x"]
+    binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
