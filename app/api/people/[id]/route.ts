@@ -3,10 +3,12 @@
 
 import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
+
+
 export async function GET(request: Request, context: any) {
   const { id } = context.params;
 
-  const prisma = new PrismaClient();
 
   const person = await prisma.person.findUnique({
     where: {
@@ -32,7 +34,6 @@ export async function PUT(request: Request, context: any) {
   const { id } = context.params;
 
   try {
-    const prisma = new PrismaClient();
 
     const body = await request.json();
     const { firstname, lastname, phone } = body;
@@ -77,7 +78,6 @@ export async function DELETE(request: Request, context: any) {
   const { id } = context.params;
 
   try {
-      const prisma = new PrismaClient();
 
       const deletedPerson = await prisma.person.delete({
           where: {
