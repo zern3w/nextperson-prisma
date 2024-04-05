@@ -3,6 +3,12 @@
 
 ## Getting Started
 
+If you have just downloaded this repo, then the first thing you need to do is 
+
+'''bash
+npm install 
+'''
+
 First, run the development server:
 
 ```bash
