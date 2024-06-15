@@ -3,6 +3,7 @@
 import React from 'react';
 import { Paper, Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
 import { Person } from '../lib/person';
+import dayjs from 'dayjs';
 
 interface PersonTableProps {
   people: Person[];

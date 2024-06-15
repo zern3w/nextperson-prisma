@@ -50,7 +50,9 @@ const PersonDialog: React.FC<PersonDialogProps> = ({ open, handleClose, currentP
           format="DD/MM/YYYY"
           value={dayjs(currentPerson?.dob || "")}
           onChange={(value) =>
-            setCurrentPerson((prev) => ({ ...prev!, dob: dayjs(value) }))
+            // setCurrentPerson((prev) => ({ ...prev!, dob: dayjs(value) }))
+            setCurrentPerson((prev) => ({ ...prev!, dob: String(dayjs(value)) }))
+            // change to date Expected ISO-8601 DateTime.
           }
         />
       </LocalizationProvider>

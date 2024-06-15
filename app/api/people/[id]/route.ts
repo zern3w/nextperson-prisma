@@ -2,6 +2,7 @@
 //if found return the data record
 
 import { PrismaClient } from '@prisma/client';
+import dayjs from 'dayjs';
 
 const prisma = new PrismaClient();
 
@@ -37,6 +38,7 @@ export async function PUT(request: Request, context: any) {
 
     const body = await request.json();
     const { firstname, lastname, phone, dob } = body;
+    const dobISO = dayjs(dob).toISOString();
 
     if (!firstname || !lastname || !phone) {
       return new Response('Missing required fields', {
@@ -52,7 +54,7 @@ export async function PUT(request: Request, context: any) {
         firstname,
         lastname,
         phone,
-        dob,
+        dob: dobISO,
       },
     });
 
@@ -69,6 +71,7 @@ export async function PUT(request: Request, context: any) {
       },
     });
   } catch (error) {
+    console.log(error)
     return new Response('Error', {
       status: 500,
     });
