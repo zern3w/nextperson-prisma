@@ -153,7 +153,7 @@ const HomePage: React.FC = () => {
           snackbarSeverity={snackbarSeverity}
         />
       </Container>
-      <Footer/>
+      <Footer />
     </Layout>
   );
 };

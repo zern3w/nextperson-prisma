@@ -36,7 +36,7 @@ export async function PUT(request: Request, context: any) {
   try {
 
     const body = await request.json();
-    const { firstname, lastname, phone } = body;
+    const { firstname, lastname, phone, dob } = body;
 
     if (!firstname || !lastname || !phone) {
       return new Response('Missing required fields', {
@@ -52,7 +52,7 @@ export async function PUT(request: Request, context: any) {
         firstname,
         lastname,
         phone,
-        // You can add other fields to update here
+        dob,
       },
     });
 
@@ -79,24 +79,24 @@ export async function DELETE(request: Request, context: any) {
 
   try {
 
-      const deletedPerson = await prisma.person.delete({
-          where: {
-              id: parseInt(id),
-          },
-      });
+    const deletedPerson = await prisma.person.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
 
-      if (!deletedPerson) {
-          return new Response('Person not found', {
-              status: 404,
-          });
-      }
-
-      return new Response('Person deleted successfully', {
-          status: 200,
+    if (!deletedPerson) {
+      return new Response('Person not found', {
+        status: 404,
       });
+    }
+
+    return new Response('Person deleted successfully', {
+      status: 200,
+    });
   } catch (error) {
-      return new Response('Error', {
-          status: 500,
-      });
+    return new Response('Error', {
+      status: 500,
+    });
   }
 }

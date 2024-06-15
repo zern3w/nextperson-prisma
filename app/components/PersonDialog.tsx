@@ -3,6 +3,10 @@
 import React from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
 import { Person } from '../lib/person';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
 
 interface PersonDialogProps {
   open: boolean;
@@ -38,6 +42,18 @@ const PersonDialog: React.FC<PersonDialogProps> = ({ open, handleClose, currentP
         value={currentPerson?.phone || ''}
         onChange={e => setCurrentPerson(prev => ({ ...prev!, phone: e.target.value }))}
       />
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker
+          label="Date of Birth"
+          // value={currentPerson?.dob ? dayjs(currentPerson.dob) : null}
+          // onChange={date => setCurrentPerson(prev => ({ ...prev!, dob: date!.toDate() || null }))}
+          format="DD/MM/YYYY"
+          value={dayjs(currentPerson?.dob || "")}
+          onChange={(value) =>
+            setCurrentPerson((prev) => ({ ...prev!, dob: dayjs(value) }))
+          }
+        />
+      </LocalizationProvider>
     </DialogContent>
     <DialogActions>
       <Button onClick={handleClose} color="primary">
